@@ -1,13 +1,17 @@
 import React, { Component } from "react";
 import { Title } from "./components/Title";
+import { SearchForm } from "./components/SearchForm";
 import "./App.css";
 import "bulma/css/bulma.css";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="container">
         <Title>Buscador de Peliculas</Title>
+        <div className="centrado">
+          <SearchForm />
+        </div>
       </div>
     );
   }
