@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Title } from "./components/Title";
+import MovieList from "./components/MovieList";
 import { SearchForm } from "./components/SearchForm";
-import { Movie } from "./components/Movie";
+import { Title } from "./components/Title";
 import "./App.css";
 import "bulma/css/bulma.css";
 
@@ -14,17 +14,6 @@ class App extends Component {
     this.setState({ results });
   };
 
-  renderResults = () => {
-    return this.state.results.map(peli => (
-      <Movie
-        key={peli.imdbID}
-        title={peli.Title}
-        year={peli.Year}
-        poster={peli.Poster}
-      />
-    ));
-  };
-
   render() {
     const { results } = this.state;
     return (
@@ -32,7 +21,11 @@ class App extends Component {
         <Title>Buscador de Peliculas</Title>
         <div className="centrado">
           <SearchForm handleResults={this.handleResults} />
-          {results.length === 0 ? <p>sin resultados</p> : this.renderResults()}
+          {results.length === 0 ? (
+            <p>sin resultados</p>
+          ) : (
+            <MovieList movies={results} />
+          )}
         </div>
       </div>
     );
