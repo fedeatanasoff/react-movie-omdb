@@ -7,25 +7,31 @@ import "bulma/css/bulma.css";
 
 class App extends Component {
   state = {
-    results: []
+    results: [],
+    useSearch: false
   };
 
   handleResults = results => {
-    this.setState({ results });
+    this.setState({ results, useSearch: true });
+  };
+
+  renderResults = () => {
+    const { results } = this.state;
+    return results.length === 0 ? (
+      <p>sin resultados</p>
+    ) : (
+      <MovieList movies={results} />
+    );
   };
 
   render() {
-    const { results } = this.state;
+    const { useSearch } = this.state;
     return (
       <div className="container">
         <Title>Buscador de Peliculas</Title>
         <div className="centrado">
           <SearchForm handleResults={this.handleResults} />
-          {results.length === 0 ? (
-            <p>sin resultados</p>
-          ) : (
-            <MovieList movies={results} />
-          )}
+          {useSearch ? this.renderResults() : <p>usa el formulario</p>}
         </div>
       </div>
     );

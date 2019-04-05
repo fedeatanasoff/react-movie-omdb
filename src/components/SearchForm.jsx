@@ -19,8 +19,8 @@ export class SearchForm extends Component {
     fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${inputPelicula}`)
       .then(res => res.json())
       .then(data => {
-        console.log("data fetch =>", data.Search);
-        handleResults(data.Search);
+        const { Search = [], totalResults = "0" } = data;
+        handleResults(Search);
       })
       .catch(e => console.log("Error => ", e));
 
