@@ -14,12 +14,18 @@ export class SearchForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { inputPelicula } = this.state;
+    const { handleResults } = this.props;
 
     fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${inputPelicula}`)
       .then(res => res.json())
-      .then(({ Search, totalResults }) => console.log(Search));
+      .then(data => {
+        console.log("data fetch =>", data.Search);
+        handleResults(data.Search);
+      })
+      .catch(e => console.log("Error => ", e));
 
     e.target.reset();
+    this.setState({ inputPelicula: "" });
   };
 
   render() {
