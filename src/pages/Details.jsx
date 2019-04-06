@@ -1,16 +1,22 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+
 const API_KEY = "e84027a3";
 
 export class Details extends Component {
   static propTypes = {
-    id: PropTypes.string
+    match: PropTypes.shape({
+      isExact: PropTypes.bool,
+      params: PropTypes.object,
+      path: PropTypes.string,
+      url: PropTypes.string
+    })
   };
 
   state = { movie: {} };
 
   componentDidMount() {
-    const { id } = this.props;
+    const { id } = this.props.match.params;
 
     fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&i=${id}`)
       .then(res => res.json())
@@ -24,6 +30,7 @@ export class Details extends Component {
   };
 
   render() {
+    console.log("props => ", this.props);
     console.log(this.state);
     return (
       <div>

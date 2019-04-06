@@ -1,20 +1,20 @@
 import React, { Component } from "react";
+import { Switch, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
-
 import { Details } from "./pages/Details";
 import "./App.css";
 import "bulma/css/bulma.css";
 
 class App extends Component {
   render() {
-    const url = new URL(document.location);
-    const Page = url.searchParams.has("id") ? (
-      <Details id={url.searchParams.get("id")} />
-    ) : (
-      <Home />
+    return (
+      <div className="container">
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/details/:id" component={Details} />
+        </Switch>
+      </div>
     );
-
-    return <div className="container">{Page}</div>;
   }
 }
 
