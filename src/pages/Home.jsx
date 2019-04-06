@@ -30,7 +30,11 @@ export class Home extends Component {
         <Title>Buscador de Peliculas</Title>
         <div className="centrado">
           <SearchForm handleResults={this.handleResults} />
-          {useSearch ? this.renderResults() : <p>usa el formulario</p>}
+          {useSearch ? (
+            this.renderResults()
+          ) : (
+            <p>utilizamos la base de datos de OMBD </p>
+          )}
         </div>
       </div>
     );

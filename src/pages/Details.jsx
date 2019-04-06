@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import ButtonToHome from "../components/ButtonToHome";
 
 const API_KEY = "e84027a3";
 
@@ -25,17 +26,13 @@ export class Details extends Component {
       });
   }
 
-  goBack = () => {
-    window.history.back();
-  };
-
   render() {
     console.log("props => ", this.props);
     console.log(this.state);
     return (
       <div>
         <h1>{this.state.movie.Title}</h1>
-        <button onClick={this.goBack}>volver</button>
+        <ButtonToHome />
       </div>
     );
   }
